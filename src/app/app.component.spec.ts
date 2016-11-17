@@ -5,6 +5,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FooterComponent } from './footer/footer.component';
+import { MonthComponent } from './calendar/month/month.component';
+import { MonthSelectorComponent } from './calendar/month/month-selector.component';
+import { MonthDisplayComponent } from './calendar/month/month-display.component';
+import { DayDisplayComponent } from './calendar/sideouts/day-display.component';
+import { AppointmentDisplayComponent } from './calendar/sideouts/appointment-display.component';
+import { AppointmentEditComponent } from './calendar/sideouts/appointment-edit.component';
 
 describe('App: Calendar', () => {
   beforeEach(() => {
@@ -13,7 +19,13 @@ describe('App: Calendar', () => {
         AppComponent,
         HeaderComponent,
         CalendarComponent,
-        FooterComponent
+        FooterComponent,
+        MonthComponent,
+        MonthSelectorComponent,
+        MonthDisplayComponent,
+        DayDisplayComponent,
+        AppointmentDisplayComponent,
+        AppointmentEditComponent
       ],
     });
   });
