@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { FooterComponent } from './footer/footer.component';
+import { StorageService } from './data/storage.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    StorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
