@@ -1,3 +1,14 @@
-<p>
-  month-display works!
-</p>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div *ngFor="let name of weekDayNames" class="col-sm-1 text-center">
+    <p><strong>{{name}}</strong></p>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+<div *ngFor="let week of weeksInMonth" class="row">
+  <div class="col-sm-2"></div>
+  <div *ngFor="let day of daysInWeek" class="col-sm-1 calendar-day-box">
+    <p *ngIf="hasDayInChart(week, day)" class="text-right">{{dayInChart(week, day)}}</p>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
