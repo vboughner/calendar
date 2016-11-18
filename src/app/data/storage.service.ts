@@ -12,20 +12,30 @@ import { Calendar} from './calendar';
 export class StorageService {
   private calendar: Calendar;
   private calendarLoaded: boolean = false;
+  private appKey = "calendarByVanBoughner";
 
   constructor() {}
 
   private loadCalendar(): void {
     if (!this.calendarLoaded) {
-      // todo: implement local storage later, for now we start with mock data
-      this.calendar = new Calendar([]);
+      let jsonInStorage = window.localStorage.getItem(this.appKey);
+      if (jsonInStorage === null) {
+        this.calendar = new Calendar([]);
+      }
+      else {
+        this.calendar = JSON.parse(jsonInStorage);
+        for (let i = 0; i < this.calendar.appointments.length; i++) {
+          this.calendar.appointments[i].startTime = new Date(String(this.calendar.appointments[i].startTime));
+        }
+      }
       this.calendarLoaded = true;
+      // console.log('loaded calendar');
+      // console.log(this.calendar);
     }
   }
 
   private saveCalendar(): void {
-    // todo: implement to save the calendar to local storage
-    // for now, do nothing, and calendar is lost upon reload
+    window.localStorage.setItem(this.appKey, JSON.stringify(this.calendar));
     // console.log('saved calendar');
     // console.log(this.calendar);
   }
