@@ -11,9 +11,8 @@ import { StorageService } from './data/storage.service';
 import { MonthComponent } from './calendar/month/month.component';
 import { MonthSelectorComponent } from './calendar/month/month-selector.component';
 import { MonthDisplayComponent } from './calendar/month/month-display.component';
-import { DayDisplayComponent } from './calendar/sideouts/day-display.component';
-import { AppointmentDisplayComponent } from './calendar/sideouts/appointment-display.component';
-import { AppointmentEditComponent } from './calendar/sideouts/appointment-edit.component';
+import { AppointmentDisplayComponent } from './calendar/appointment/appointment-display.component';
+import { AppointmentEditComponent } from './calendar/appointment/appointment-edit.component';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { routing } from './app.routing';
     MonthComponent,
     MonthSelectorComponent,
     MonthDisplayComponent,
-    DayDisplayComponent,
     AppointmentDisplayComponent,
     AppointmentEditComponent
   ],
