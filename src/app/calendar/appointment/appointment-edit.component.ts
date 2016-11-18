@@ -123,7 +123,7 @@ export class AppointmentEditComponent implements OnInit {
     const newEndTime: Date = new Date(newStartTime.getTime() + (60000 * a.duration));
 
     for (let i = 0; i < calendar.appointments.length; i++) {
-      if (!this.isAdd && this.selectedAppointment !== calendar.appointments[i]) {
+      if (this.isAdd || this.selectedAppointment !== calendar.appointments[i]) {
         let apptStartTime: Date = calendar.appointments[i].startTime;
         let apptEndTime = new Date(apptStartTime.getTime() + (60000 * calendar.appointments[i].duration));
         if ((newStartTime >= apptStartTime && newStartTime < apptEndTime) ||
