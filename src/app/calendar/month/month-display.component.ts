@@ -120,7 +120,14 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
         returnedAppointments.push(a);
       }
     }
-    // todo: sort array by start time
+
+    // sort array by start time
+    returnedAppointments.sort(function(a, b) {
+        var startTimeA = a.startTime;
+        var startTimeB = b.startTime;
+        return (startTimeA < startTimeB) ? -1 : (startTimeA > startTimeB) ? 1 : 0;
+    });
+
     return returnedAppointments;
   }
 

@@ -1,6 +1,10 @@
 # Calendar
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.15.
+A simple calendar by Van Boughner, built with Angular2 and Bootstrap.  It features the use of Angular2 routing (watch the URLs), as well as local storage in your web browser for the appointments.
+
+See this project running at Github Pages: https://vboughner.github.io/calendar/
+
+Boilerplate for this project was initially generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.15.
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
