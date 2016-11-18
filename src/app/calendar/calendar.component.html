@@ -1,1 +1,17 @@
-<app-month></app-month>
+<div *ngIf="isMonthDisplay">
+  <app-month></app-month>
+</div>
+<div *ngIf="!isMonthDisplay && !isEdit">
+  <app-appointment-display
+    [selectedYear]="selectedYear"
+    [selectedMonth]="selectedMonth"
+    [appointmentIndex]="appointmentIndex">
+  </app-appointment-display>
+</div>
+<div *ngIf="isEdit">
+  <app-appointment-edit
+    [selectedYear]="selectedYear"
+    [selectedMonth]="selectedMonth"
+    [appointmentIndex]="appointmentIndex">
+  </app-appointment-edit>
+</div>

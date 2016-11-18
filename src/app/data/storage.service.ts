@@ -33,6 +33,11 @@ export class StorageService {
     return this.calendar;
   }
 
+  getAppointment(index: number): Appointment {
+    this.loadCalendar();
+    return this.calendar.appointments[index];
+  }
+
   addAppointment(a: Appointment): number {
     this.loadCalendar();
     let index: number = this.calendar.appointments.push(a);

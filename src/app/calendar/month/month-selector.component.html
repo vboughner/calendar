@@ -1,11 +1,14 @@
 <div class="row calendar-month-selector">
   <div class="col-sm-2"></div>
-  <div class="col-sm-4 text-left">
+  <div class="col-sm-3 text-left">
     <h3 class="calendar-month-title">{{monthNames[selectedMonth - 1]}} {{selectedYear}}</h3>
   </div>
-  <div class="col-sm-3 text-right">
+  <div class="col-sm-2 text-left">
     <button class="btn btn-success" (click)="onPrevMonth()">Prev</button>
     <button class="btn btn-success" (click)="onNextMonth()">Next</button>
+  </div>
+  <div class="col-sm-2 text-right">
+    <button class="btn btn-primary" (click)="onNewAppointment()">New Appointment</button>
   </div>
   <div class="col-sm-3"></div>
 </div>

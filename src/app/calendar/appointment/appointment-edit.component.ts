@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-appointment-edit',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class AppointmentEditComponent implements OnInit {
+  @Input() selectedMonth: number;
+  @Input() selectedYear: number;
+  @Input() appointmentIndex: number;
 
   constructor() { }
 

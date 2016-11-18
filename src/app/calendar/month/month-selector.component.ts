@@ -47,7 +47,7 @@ export class MonthSelectorComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
-  onPrevMonth() {
+  onPrevMonth(): void {
     let month: number = this.selectedMonth;
     let year: number = this.selectedYear;
 
@@ -60,7 +60,7 @@ export class MonthSelectorComponent implements OnInit, OnDestroy {
     this.router.navigate(['/calendar/' + year + '/' + month]);
   }
 
-  onNextMonth() {
+  onNextMonth(): void {
     let month: number = this.selectedMonth;
     let year: number = this.selectedYear;
 
@@ -71,5 +71,9 @@ export class MonthSelectorComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate(['/calendar/' + year + '/' + month]);
+  }
+
+  onNewAppointment(): void {
+    this.router.navigate(['/calendar/' + this.selectedYear + '/' + this.selectedMonth + '/new']);
   }
 }
