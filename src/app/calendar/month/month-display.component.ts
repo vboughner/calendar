@@ -129,6 +129,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
     let hour: number = a.startTime.getHours();
     let ampm: string = 'am';
     if (hour > 11) {
+      hour = hour - 12;
       ampm = 'pm';
     }
     if (hour === 0) {
