@@ -38,7 +38,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   // returns a number for the weekday of the first day of the given month,
   // useful for calculations, Sunday is 0, Monday is 1, ..., Saturday is 6
   private getWeekdayFirstOfMonth(year: number, month: number): number {
-    const day = new Date(year + '-' + month + '-01').getDay();
+    const day: number = new Date(year, month - 1, 1).getDay();
     return day;
   }
 
@@ -94,6 +94,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   // doesn't have a day in the given location
   dayInChart(week: number, day: number): number {
     const dayInChart = (week * 7) + day - this.weekdayFirstOfMonth;
+    console.log('dayInChart = ' + dayInChart + ', weekdayFirstOfMonth=' + this.weekdayFirstOfMonth + ', day=' + day);
     if (dayInChart >= 0 && dayInChart < this.numDaysInMonth) {
       return dayInChart + 1;
     } else {
