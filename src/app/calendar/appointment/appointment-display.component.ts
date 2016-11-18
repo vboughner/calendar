@@ -15,7 +15,7 @@ export class AppointmentDisplayComponent implements OnInit {
   selectedAppointment: Appointment;
 
   private isConfirmDeleteVisible: boolean = false;
-  private confirmDeleteMsg;
+  private confirmDeleteMessage: string;
 
   constructor(private storage: StorageService, private router: Router) {}
 
@@ -32,7 +32,7 @@ export class AppointmentDisplayComponent implements OnInit {
   }
 
   onDelete() {
-    this.confirmDeleteMsg = 'Are you sure you wish to delete the appointment "' +
+    this.confirmDeleteMessage = 'Are you sure you wish to delete the appointment "' +
       this.selectedAppointment.name + '"';
     this.isConfirmDeleteVisible = true;
   }

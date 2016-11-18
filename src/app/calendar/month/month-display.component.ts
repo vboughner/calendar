@@ -142,7 +142,8 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
     if (hour === 0) {
       hour = 12;
     }
-    return hour + ampm;
+    let minute: number = a.startTime.getMinutes();
+    return hour + ':' + (minute < 10 ? '0' + minute : minute) + ' ' + ampm;
   }
 
   // return an array of appointment text for this day
@@ -151,7 +152,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
     let returnedText: {name: string, time: string}[] = [];
     for (let i = 0; i < appts.length; i++) {
       let a: {name: string, time: string} = { name: '', time: ''};
-      a.name = appts[i].name;
+      a.name = '(' + appts[i].duration + ' minutes) ' + appts[i].name;
       a.time = this.getAppoinmentTime(appts[i]);
       returnedText.push(a);
     }

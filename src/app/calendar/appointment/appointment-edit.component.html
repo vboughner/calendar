@@ -1,3 +1,19 @@
+<div *ngIf="isErrorMessageVisible" class="modal fade show in danger" id="errorMessageModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" (click)="cancelError()" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Appointment Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{errorMessage}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="cancelError()" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div>
   <div class="row">
     <div class="col-sm-3"></div>
@@ -94,8 +110,8 @@
         </div>
         <div class="row">
           <div class="col-sm-12 text-right">
-            <button class="btn btn-success" type="submit" *ngIf="isAdd" [disabled]="!f.valid">Add</button>
-            <button class="btn btn-success" type="submit" *ngIf="!isAdd" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-success" type="submit" *ngIf="isAdd">Add</button>
+            <button class="btn btn-success" type="submit" *ngIf="!isAdd">Save</button>
             <button class="btn btn-default" (click)="onCancel()">Cancel</button>
           </div>
         </div>
