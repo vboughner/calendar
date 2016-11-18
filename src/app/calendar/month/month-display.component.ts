@@ -16,7 +16,7 @@ import {Calendar} from "../../data/calendar";
       background-color: lightgray;
       margin-top: 2px;
       margin-left: 2px;
-      min-height: 100px;
+      min-height: 150px;
       padding-top: 5px;
     }
   `]
@@ -131,8 +131,13 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
     return returnedAppointments;
   }
 
-  // returns a short string with start time of an appointment
+  // returns a short string with start time and name of appointment
   private getAppoinmentTime(a: Appointment): string {
+    let namePart: string = a.name;
+    if (namePart.length > 10) {
+      namePart = namePart.substring(0, 9) + '...';
+    }
+
     let hour: number = a.startTime.getHours();
     let ampm: string = 'am';
     if (hour > 11) {
@@ -143,7 +148,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
       hour = 12;
     }
     let minute: number = a.startTime.getMinutes();
-    return hour + ':' + (minute < 10 ? '0' + minute : minute) + ' ' + ampm;
+    return hour + ':' + (minute < 10 ? '0' + minute : minute) + ampm + ' ' + namePart;
   }
 
   // return an array of appointment text for this day
@@ -151,7 +156,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
     let appts: Appointment[] = this.appointmentsInChart(week, day);
     let returnedText: {name: string, time: string}[] = [];
     for (let i = 0; i < appts.length; i++) {
-      let a: {name: string, time: string} = { name: '', time: ''};
+      let a: {name: string, time: string} = { name: '', time: '' };
       a.name = '(' + appts[i].duration + ' minutes) ' + appts[i].name;
       a.time = this.getAppoinmentTime(appts[i]);
       returnedText.push(a);
