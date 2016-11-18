@@ -4,8 +4,8 @@
     <h3 class="calendar-month-title">{{monthNames[selectedMonth - 1]}} {{selectedYear}}</h3>
   </div>
   <div class="col-sm-3 text-right">
-    <button class="btn btn-success">Prev</button>
-    <button class="btn btn-success">Next</button>
+    <button class="btn btn-success" (click)="onPrevMonth()">Prev</button>
+    <button class="btn btn-success" (click)="onNextMonth()">Next</button>
   </div>
   <div class="col-sm-3"></div>
 </div>

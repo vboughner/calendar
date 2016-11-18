@@ -11,6 +11,7 @@ import { MonthDisplayComponent } from './calendar/month/month-display.component'
 import { DayDisplayComponent } from './calendar/sideouts/day-display.component';
 import { AppointmentDisplayComponent } from './calendar/sideouts/appointment-display.component';
 import { AppointmentEditComponent } from './calendar/sideouts/appointment-edit.component';
+import { routing } from './app.routing';
 
 describe('App: Calendar', () => {
   beforeEach(() => {
@@ -27,6 +28,9 @@ describe('App: Calendar', () => {
         AppointmentDisplayComponent,
         AppointmentEditComponent
       ],
+      imports: [
+        routing
+      ]
     });
   });
 

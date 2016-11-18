@@ -4,8 +4,17 @@ import { TestBed, async } from '@angular/core/testing';
 import { MonthDisplayComponent } from './month-display.component';
 
 describe('Component: MonthDisplay', () => {
-  it('should create an instance', () => {
-    let component = new MonthDisplayComponent();
-    expect(component).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        MonthDisplayComponent
+      ],
+    });
   });
+
+  it('should create an instance', async(() => {
+    let fixture = TestBed.createComponent(MonthDisplayComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
 });
