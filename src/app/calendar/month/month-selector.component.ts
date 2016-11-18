@@ -17,7 +17,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class MonthSelectorComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription;
 
-  monthNames: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  monthNames: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
   selectedYear: number;
   selectedMonth: number;        // January is 1, December is 12, need to adjust by -1 before using with the monthNames array
 
@@ -29,8 +32,7 @@ export class MonthSelectorComponent implements OnInit, OnDestroy {
         if (params['year'] && params['month']) {
           this.selectedYear = params['year'];
           this.selectedMonth = params['month'];
-        }
-        else {
+        } else {
           // when no year and month are selected in the URL, use today's month
           // note that JavaScript Date uses 0-based month numbers, so need to adjust by +1
           const currentTime = new Date();

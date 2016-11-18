@@ -34,7 +34,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   // returns a number for the weekday of the first day of the given month,
   // useful for calculations, Sunday is 0, Monday is 1, ..., Saturday is 6
   private getWeekdayFirstOfMonth(year: number, month: number): number {
-    const day = new Date(year + "-" + month + "-01").getDay();
+    const day = new Date(year + '-' + month + '-01').getDay();
     return day;
   }
 
@@ -62,8 +62,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
         if (params['year'] && params['month']) {
           this.selectedYear = params['year'];
           this.selectedMonth = params['month'];
-        }
-        else {
+        } else {
           // when no year and month are selected in the URL, use today's month
           const currentTime = new Date();
           this.selectedMonth = currentTime.getMonth() + 1;
@@ -93,8 +92,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
     const dayInChart = (week * 7) + day - this.weekdayFirstOfMonth;
     if (dayInChart >= 0 && dayInChart < this.numDaysInMonth) {
       return dayInChart + 1;
-    }
-    else {
+    } else {
       return -1;
     }
   }
@@ -102,6 +100,6 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   // returns true if there should be a month number showing in the month grid at the given location,
   // (week, day) is (0, 0) at the top left of the calendar
   hasDayInChart(week: number, day: number) {
-    return(this.dayInChart(week, day) != -1);
+    return(this.dayInChart(week, day) !== -1);
   }
 }

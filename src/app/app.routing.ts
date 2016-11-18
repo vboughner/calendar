@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CalendarComponent } from "./calendar/calendar.component";
+import { CalendarComponent } from './calendar/calendar.component';
 
 /*
  * Top-level routes for URLs in the application.

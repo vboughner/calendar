@@ -17,7 +17,7 @@ export class StorageService {
 
   private loadCalendar(): void {
     if (!this.calendarLoaded) {
-      //todo: implement local storage later, for now we start with mock data
+      // todo: implement local storage later, for now we start with mock data
       this.calendar = new Calendar([]);
       this.calendarLoaded = true;
     }
