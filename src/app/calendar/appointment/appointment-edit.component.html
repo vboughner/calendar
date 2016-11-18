@@ -21,9 +21,11 @@
       <h3 *ngIf="isAdd">New Appointment</h3>
       <h3 *ngIf="!isAdd">Edit Appointment</h3>
       <form id="appointment-list-add" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
-        <div class="row">
-          <div class="col-sm-12 form-group">
+        <div class="form-group row" style="margin-top: 20px">
+          <div class="col-sm-3">
             <label for="appointment-name">Name</label>
+          </div>
+          <div class="col-sm-9">
             <input
               type="text"
               id="appointment-name"
@@ -33,9 +35,11 @@
               name="name">
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12 form-group">
+        <div class="form-group row">
+          <div class="col-sm-3">
             <label>Date</label>
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-year"
@@ -43,6 +47,8 @@
               class="form-control"
               [ngModel]="selectedYear"
               name="year">
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-month"
@@ -50,6 +56,8 @@
               class="form-control"
               [ngModel]="selectedMonth"
               name="month">
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-day"
@@ -59,9 +67,11 @@
               name="day">
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12 form-group">
+        <div class="form-group row">
+          <div class="col-sm-3">
             <label>Time</label>
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-hour"
@@ -69,6 +79,8 @@
               class="form-control"
               [ngModel]="calculatedHour"
               name="hour">
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-minute"
@@ -76,6 +88,8 @@
               class="form-control"
               [ngModel]="calculatedMinute"
               name="minute">
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-ampm"
@@ -85,9 +99,11 @@
               name="ampm">
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12 form-group">
+        <div class="form-group row">
+          <div class="col-sm-3">
             <label>Duration</label>
+          </div>
+          <div class="col-sm-3">
             <input
               type="text"
               id="appointment-duration"
@@ -95,6 +111,9 @@
               class="form-control"
               [ngModel]="calculatedDuration"
               name="duration">
+          </div>
+          <div class="col-sm-3">
+            <p style="margin-top: 10px">minutes</p>
           </div>
         </div>
         <div class="row">

@@ -20,7 +20,7 @@ export class AppointmentEditComponent implements OnInit {
   selectedAppointment: Appointment;
   calculatedDay: number;
   calculatedHour: number;
-  calculatedMinute: number;
+  calculatedMinute: string;
   calculatedAmPm: string;
   calculatedDuration: number;
 
@@ -40,7 +40,8 @@ export class AppointmentEditComponent implements OnInit {
 
     this.calculatedDay = this.selectedAppointment.startTime.getDate();
     this.calculatedHour = this.selectedAppointment.startTime.getHours();
-    this.calculatedMinute = this.selectedAppointment.startTime.getMinutes();
+    let minute: number = this.selectedAppointment.startTime.getMinutes();
+    this.calculatedMinute = (minute < 10 ? String('0' + minute) : String(minute));
     this.calculatedDuration = this.selectedAppointment.duration;
     if (this.calculatedHour > 11) {
       this.calculatedHour = this.calculatedHour - 12;
@@ -122,13 +123,15 @@ export class AppointmentEditComponent implements OnInit {
     const newEndTime: Date = new Date(newStartTime.getTime() + (60000 * a.duration));
 
     for (let i = 0; i < calendar.appointments.length; i++) {
-      let apptStartTime: Date = calendar.appointments[i].startTime;
-      let apptEndTime = new Date(apptStartTime.getTime() + (60000 * calendar.appointments[i].duration));
-      if ((newStartTime >= apptStartTime && newStartTime < apptEndTime) ||
-        (newEndTime > apptStartTime && newEndTime <= apptEndTime)) {
-        this.onError('This appointment overlaps with an existing appointment called "' + calendar.appointments[i].name +
-          '", please update the start date, time, and/or duration and try again.');
-        return false;
+      if (!this.isAdd && this.selectedAppointment !== calendar.appointments[i]) {
+        let apptStartTime: Date = calendar.appointments[i].startTime;
+        let apptEndTime = new Date(apptStartTime.getTime() + (60000 * calendar.appointments[i].duration));
+        if ((newStartTime >= apptStartTime && newStartTime < apptEndTime) ||
+          (newEndTime > apptStartTime && newEndTime <= apptEndTime)) {
+          this.onError('This appointment overlaps with an existing appointment called "' + calendar.appointments[i].name +
+            '", please update the start date, time, and/or duration and try again.');
+          return false;
+        }
       }
     }
 
