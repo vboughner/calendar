@@ -26,6 +26,8 @@ export class StorageService {
   private saveCalendar(): void {
     // todo: implement to save the calendar to local storage
     // for now, do nothing, and calendar is lost upon reload
+    // console.log('saved calendar');
+    // console.log(this.calendar);
   }
 
   getCalendar(): Calendar {
@@ -38,6 +40,12 @@ export class StorageService {
     return this.calendar.appointments[index];
   }
 
+  getAppointmentIndex(a: Appointment): number {
+    this.loadCalendar();
+    const index = this.calendar.appointments.indexOf(a);
+    return index;
+  }
+
   addAppointment(a: Appointment): number {
     this.loadCalendar();
     let index: number = this.calendar.appointments.push(a);
@@ -45,7 +53,7 @@ export class StorageService {
     return index;
   }
 
-  editApointment(old: Appointment, updated: Appointment): void {
+  editAppointment(old: Appointment, updated: Appointment): void {
     this.loadCalendar();
     const index = this.calendar.appointments.indexOf(old);
     this.calendar.appointments[index] = updated;

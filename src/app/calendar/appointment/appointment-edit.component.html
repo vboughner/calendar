@@ -1,6 +1,106 @@
-<p>
-  appointment-edit works!
-</p>
-<p>month is {{selectedMonth}}</p>
-<p>year is {{selectedYear}}</p>
-<p>index is {{appointmentIndex}}</p>
+<div>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-5">
+      <h3 *ngIf="isAdd">New Appointment</h3>
+      <h3 *ngIf="!isAdd">Edit Appointment</h3>
+      <form id="appointment-list-add" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="appointment-name">Name</label>
+            <input
+              type="text"
+              id="appointment-name"
+              required
+              class="form-control"
+              [ngModel]="selectedAppointment.name"
+              name="name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label>Date</label>
+            <input
+              type="text"
+              id="appointment-year"
+              required
+              class="form-control"
+              [ngModel]="selectedYear"
+              name="year">
+            <input
+              type="text"
+              id="appointment-month"
+              required
+              class="form-control"
+              [ngModel]="selectedMonth"
+              name="month">
+            <input
+              type="text"
+              id="appointment-day"
+              required
+              class="form-control"
+              [ngModel]="calculatedDay"
+              name="day">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label>Time</label>
+            <input
+              type="text"
+              id="appointment-hour"
+              required
+              class="form-control"
+              [ngModel]="calculatedHour"
+              name="hour">
+            <input
+              type="text"
+              id="appointment-minute"
+              required
+              class="form-control"
+              [ngModel]="calculatedMinute"
+              name="minute">
+            <input
+              type="text"
+              id="appointment-ampm"
+              required
+              class="form-control"
+              [ngModel]="calculatedAmPm"
+              name="ampm">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label>Duration</label>
+            <input
+              type="text"
+              id="appointment-duration"
+              required
+              class="form-control"
+              [ngModel]="calculatedDuration"
+              name="duration">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="appointment-description">Description</label>
+            <textarea
+              rows="5"
+              id="appointment-description"
+              class="form-control"
+              [ngModel]="selectedAppointment.description"
+              name="description">{{selectedAppointment.description}}</textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 text-right">
+            <button class="btn btn-success" type="submit" *ngIf="isAdd" [disabled]="!f.valid">Add</button>
+            <button class="btn btn-success" type="submit" *ngIf="!isAdd" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-default" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>

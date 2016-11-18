@@ -1,6 +1,9 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {Appointment} from '../../data/appointment';
+import {StorageService} from '../../data/storage.service';
+import {Calendar} from "../../data/calendar";
 
 /*
  * Displays a chart/grid of the currently selected month.
@@ -14,6 +17,7 @@ import {Subscription} from 'rxjs';
       margin-top: 2px;
       margin-left: 2px;
       min-height: 100px;
+      padding-top: 5px;
     }
   `]
 })
@@ -29,7 +33,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   weekdayFirstOfMonth: number;  // which weekday selected month begins, Sunday is 0, Saturday is 6
   weeksInMonth: number[];       // an element for each weeks that must appear in calendar for selected month (usually 5 or 6 elements)
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router, private storage: StorageService) {}
 
   // returns a number for the weekday of the first day of the given month,
   // useful for calculations, Sunday is 0, Monday is 1, ..., Saturday is 6
@@ -88,7 +92,7 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   // returns the number that should be showing in the month grid at the given location,
   // (week, day) is (0, 0) at the top left of the calendar, returns -1 if the selectedMonth
   // doesn't have a day in the given location
-  dayInChart(week: number, day: number) {
+  dayInChart(week: number, day: number): number {
     const dayInChart = (week * 7) + day - this.weekdayFirstOfMonth;
     if (dayInChart >= 0 && dayInChart < this.numDaysInMonth) {
       return dayInChart + 1;
@@ -101,5 +105,56 @@ export class MonthDisplayComponent implements OnInit, OnDestroy {
   // (week, day) is (0, 0) at the top left of the calendar
   hasDayInChart(week: number, day: number) {
     return(this.dayInChart(week, day) !== -1);
+  }
+
+  // return an array of appointments for this day, sorted by start time
+  private appointmentsInChart(week: number, day: number): Appointment[] {
+    let selectedDay: number = this.dayInChart(week, day);
+    let returnedAppointments: Appointment[] = [];
+    let c: Calendar = this.storage.getCalendar();
+    for (let i = 0; i < c.appointments.length; i++) {
+      let a: Appointment = c.appointments[i];
+      if (a.startTime.getFullYear() === Number(this.selectedYear) &&
+          a.startTime.getMonth() === this.selectedMonth - 1 &&
+          a.startTime.getDate() === selectedDay) {
+        returnedAppointments.push(a);
+      }
+    }
+    // todo: sort array by start time
+    return returnedAppointments;
+  }
+
+  // returns a short string with start time of an appointment
+  private getAppoinmentTime(a: Appointment): string {
+    let hour: number = a.startTime.getHours();
+    let ampm: string = 'am';
+    if (hour > 11) {
+      ampm = 'pm';
+    }
+    if (hour === 0) {
+      hour = 12;
+    }
+    return hour + ampm;
+  }
+
+  // return an array of appointment text for this day
+  apptsInChart(week: number, day: number): {name: string, time: string}[] {
+    let appts: Appointment[] = this.appointmentsInChart(week, day);
+    let returnedText: {name: string, time: string}[] = [];
+    for (let i = 0; i < appts.length; i++) {
+      let a: {name: string, time: string} = { name: '', time: ''};
+      a.name = appts[i].name;
+      a.time = this.getAppoinmentTime(appts[i]);
+      returnedText.push(a);
+    }
+    return returnedText;
+  }
+
+  // navigate to the newly selected appointment
+  onApptInChart(week: number, day: number, index: number) {
+    let appts: Appointment[] = this.appointmentsInChart(week, day);
+    let selectedOne: Appointment = appts[index];
+    const appointmentIndex: number = this.storage.getAppointmentIndex(selectedOne);
+    this.router.navigate(['/calendar/' + this.selectedYear + '/' + this.selectedMonth + '/' + appointmentIndex]);
   }
 }

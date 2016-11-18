@@ -8,7 +8,12 @@
 <div *ngFor="let week of weeksInMonth" class="row">
   <div class="col-sm-2"></div>
   <div *ngFor="let day of daysInWeek" class="col-sm-1 calendar-day-box">
-    <p *ngIf="hasDayInChart(week, day)" class="text-right">{{dayInChart(week, day)}}</p>
+    <div *ngIf="hasDayInChart(week, day)">
+      <p class="text-left">{{dayInChart(week, day)}}</p>
+      <div *ngFor="let appt of apptsInChart(week, day); let i = index">
+        <a class="text-left small" (click)="onApptInChart(week, day, i)" title="{{appt.name}}">{{appt.time}}</a>
+      </div>
+    </div>
   </div>
   <div class="col-sm-3"></div>
 </div>
